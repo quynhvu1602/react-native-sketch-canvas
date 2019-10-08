@@ -168,7 +168,7 @@ class SketchCanvas extends React.Component {
           id: parseInt(Math.random() * 100000000), color: this.props.strokeColor,
           width: this.props.strokeWidth, data: []
         }
-        
+
         UIManager.dispatchViewManagerCommand(
           this._handle,
           UIManager.RNSketchCanvas.Commands.newPath,
