@@ -238,7 +238,7 @@ export default class RNSketchCanvas extends React.Component {
         />
         <View style={{ flexDirection: 'row' }}>
           <View style={{ position: 'relative' }}>
-            <View style={{position: 'absolute', zIndex: 1}}>{colorPaint}</View>
+            <View style={{position: 'absolute', top: -30}}>{colorPaint}</View>
             {this.props.penComponent && (
               <TouchableOpacity onPress={() => { this.state.mode === 0 ? this.setState({mode: 1}) : this.setState({mode:0})  }}>
                 {this.props.penComponent}
