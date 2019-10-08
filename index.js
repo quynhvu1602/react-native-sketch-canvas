@@ -5,6 +5,7 @@ import ReactNative, {
   Text,
   TouchableOpacity,
   FlatList,
+  ScrollView,
   ViewPropTypes,
 } from 'react-native'
 import SketchCanvas from './src/SketchCanvas'
