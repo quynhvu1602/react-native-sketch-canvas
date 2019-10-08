@@ -237,7 +237,7 @@ export default class RNSketchCanvas extends React.Component {
           permissionDialogMessage={this.props.permissionDialogMessage}
         />
         <View style={{ flexDirection: 'row' }}>
-          <View style={{ position: relative, display: inline-block}}>
+          <View>
             {this.props.penComponent && (
               <TouchableOpacity onPress={() => { this.state.mode === 0 ? this.setState({mode: 1}) : this.setState({mode:0})  }}>
                 {this.props.penComponent}
