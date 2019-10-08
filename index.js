@@ -27,6 +27,7 @@ export default class RNSketchCanvas extends React.Component {
     closeComponent: PropTypes.node,
     eraseComponent: PropTypes.node,
     undoComponent: PropTypes.node,
+    penComponent: PropTypes.node,
     clearComponent: PropTypes.node,
     saveComponent: PropTypes.node,
     strokeComponent: PropTypes.func,
@@ -77,6 +78,7 @@ export default class RNSketchCanvas extends React.Component {
     closeComponent: null,
     eraseComponent: null,
     undoComponent: null,
+    penComponent: null,
     clearComponent: null,
     saveComponent: null,
     strokeComponent: null,
@@ -127,7 +129,8 @@ export default class RNSketchCanvas extends React.Component {
     this.state = {
       color: props.strokeColors[props.defaultStrokeIndex].color,
       strokeWidth: props.defaultStrokeWidth,
-      alpha: 'FF'
+      alpha: 'FF',
+      mode: 0
     }
 
     this._colorChanged = false
@@ -203,6 +206,18 @@ export default class RNSketchCanvas extends React.Component {
   }
 
   render() {
+
+    const colorPaint = this.state.mode === 1
+    ? <FlatList
+        data={this.props.strokeColors}
+        extraData={this.state}
+        keyExtractor={() => Math.ceil(Math.random() * 10000000).toString()}
+        renderItem={this._renderItem}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+      />
+    : null
+
     return (
       <View style={this.props.containerStyle}>
         <SketchCanvas
@@ -222,51 +237,54 @@ export default class RNSketchCanvas extends React.Component {
           permissionDialogMessage={this.props.permissionDialogMessage}
         />
         <View style={{ flexDirection: 'row' }}>
-          <FlatList
-            data={this.props.strokeColors}
-            extraData={this.state}
-            keyExtractor={() => Math.ceil(Math.random() * 10000000).toString()}
-            renderItem={this._renderItem}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-          />
-          <ScrollView>
-            {this.props.closeComponent && (
-              <TouchableOpacity onPress={() => { this.props.onClosePressed() }}>
-                {this.props.closeComponent}
+          <View style={{ position: relative, display: inline-block}}>
+            {this.props.penComponent && (
+              <TouchableOpacity onPress={() => { this.state.mode === 0 ? this.setState({mode: 1}) : this.setState({mode:0})  }}>
+                {this.props.penComponent}
               </TouchableOpacity>)
             }
+            <View style={{position: absolute, zIndex: 1}}>{colorPaint}</View>
+          </View>
 
-            {this.props.eraseComponent && (
-              <TouchableOpacity onPress={() => { this.setState({ color: '#00000000' }) }}>
-                {this.props.eraseComponent}
-              </TouchableOpacity>)
-            }
+          <View style={{ flexDirection: 'row' }}>
+            <ScrollView>
+              {this.props.closeComponent && (
+                <TouchableOpacity onPress={() => { this.props.onClosePressed() }}>
+                  {this.props.closeComponent}
+                </TouchableOpacity>)
+              }
 
-            {this.props.strokeWidthComponent && (
-              <TouchableOpacity onPress={() => { this.nextStrokeWidth() }}>
-                {this.props.strokeWidthComponent(this.state.strokeWidth)}
-              </TouchableOpacity>)
-            }
+              {this.props.eraseComponent && (
+                <TouchableOpacity onPress={() => { this.setState({ color: '#00000000' }) }}>
+                  {this.props.eraseComponent}
+                </TouchableOpacity>)
+              }
 
-            {this.props.undoComponent && (
-              <TouchableOpacity onPress={() => { this.props.onUndoPressed(this.undo()) }}>
-                {this.props.undoComponent}
-              </TouchableOpacity>)
-            }
+              {this.props.strokeWidthComponent && (
+                <TouchableOpacity onPress={() => { this.nextStrokeWidth() }}>
+                  {this.props.strokeWidthComponent(this.state.strokeWidth)}
+                </TouchableOpacity>)
+              }
 
-            {this.props.clearComponent && (
-              <TouchableOpacity onPress={() => { this.clear(); this.props.onClearPressed() }}>
-                {this.props.clearComponent}
-              </TouchableOpacity>)
-            }
+              {this.props.undoComponent && (
+                <TouchableOpacity onPress={() => { this.props.onUndoPressed(this.undo()) }}>
+                  {this.props.undoComponent}
+                </TouchableOpacity>)
+              }
 
-            {this.props.saveComponent && (
-              <TouchableOpacity onPress={() => { this.save() }}>
-                {this.props.saveComponent}
-              </TouchableOpacity>)
-            }
-          </ScrollView>
+              {this.props.clearComponent && (
+                <TouchableOpacity onPress={() => { this.clear(); this.props.onClearPressed() }}>
+                  {this.props.clearComponent}
+                </TouchableOpacity>)
+              }
+
+              {this.props.saveComponent && (
+                <TouchableOpacity onPress={() => { this.save() }}>
+                  {this.props.saveComponent}
+                </TouchableOpacity>)
+              }
+            </ScrollView>
+          </View>
         </View>
       </View>
     );
