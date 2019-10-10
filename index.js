@@ -227,7 +227,7 @@ export default class RNSketchCanvas extends React.Component {
               borderRightWidth: 10,
               borderRightColor: 'transparent',
               borderTopWidth: 10,
-              borderTopColor: '#D3D3D3',
+              borderTopColor: '#FAE3B9',
               left: '15%'
             }}
           >
@@ -254,15 +254,6 @@ export default class RNSketchCanvas extends React.Component {
           permissionDialogMessage={this.props.permissionDialogMessage}
         />
         <View style={{ flexDirection: 'row' }}>
-          <View style={{ position: 'relative' }}>
-            <View style={{position: 'absolute', top: -30}}>{colorPaint}</View>
-            {this.props.penComponent && (
-              <TouchableOpacity onPress={() => { this.state.mode === 0 ? this.setState({mode: 1}) : this.setState({mode:0})  }}>
-                {this.props.penComponent}
-              </TouchableOpacity>)
-            }
-          </View>
-
           <View style={{ flexDirection: 'row' }}>
             <ScrollView>
               {this.props.closeComponent && (
@@ -301,6 +292,14 @@ export default class RNSketchCanvas extends React.Component {
                 </TouchableOpacity>)
               }
             </ScrollView>
+          </View>
+          <View style={{ position: 'relative' }}>
+            <View style={{position: 'absolute', top: -30}}>{colorPaint}</View>
+            {this.props.penComponent && (
+              <TouchableOpacity onPress={() => { this.state.mode === 0 ? this.setState({mode: 1}) : this.setState({mode:0})  }}>
+                {this.props.penComponent}
+              </TouchableOpacity>)
+            }
           </View>
         </View>
       </View>
