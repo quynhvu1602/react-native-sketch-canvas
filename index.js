@@ -15,6 +15,8 @@ export default class RNSketchCanvas extends React.Component {
   static propTypes = {
     containerStyle: ViewPropTypes.style,
     canvasStyle: ViewPropTypes.style,
+    containColorStyle: ViewPropTypes.style,
+    triangularStyle: ViewPropTypes.style,
     onStrokeStart: PropTypes.func,
     onStrokeChanged: PropTypes.func,
     onStrokeEnd: PropTypes.func,
@@ -61,6 +63,7 @@ export default class RNSketchCanvas extends React.Component {
 
     permissionDialogTitle: PropTypes.string,
     permissionDialogMessage: PropTypes.string,
+    backgroundContainColorStyle: PropTypes.string
   };
 
   static defaultProps = {
@@ -208,9 +211,9 @@ export default class RNSketchCanvas extends React.Component {
   render() {
 
     const colorPaint = this.state.mode === 1
-    ? <View style={{ position: 'absolute',top: -20, width: 155 }}>
+    ? <View style={this.props.containColorStyle}>
         <FlatList
-          style={{backgroundColor: '#ffffff',}}
+          style={{backgroundColor: this.props.backgroundContainColorStyle}}
           data={this.props.strokeColors}
           extraData={this.state}
           //keyExtractor={() => Math.ceil(Math.random() * 10000000).toString()}
@@ -218,6 +221,10 @@ export default class RNSketchCanvas extends React.Component {
           horizontal
           showsHorizontalScrollIndicator={false}
         />
+        <View
+          style={this.props.triangularStyle}
+        >
+        </View>
       </View>
     : null
 
@@ -301,19 +308,3 @@ RNSketchCanvas.CACHES = SketchCanvas.CACHES;
 export {
   SketchCanvas
 }
-
-
-// <View
-//             style={{
-//               width: 0,
-//               height: 0,
-//               borderLeftWidth: 10,
-//               borderLeftColor: 'transparent',
-//               borderRightWidth: 10,
-//               borderRightColor: 'transparent',
-//               borderTopWidth: 10,
-//               borderTopColor: '#FAE3B9',
-//               left: '15%'
-//             }}
-//           >
-//           </View>
