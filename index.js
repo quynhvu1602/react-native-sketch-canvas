@@ -210,7 +210,7 @@ export default class RNSketchCanvas extends React.Component {
     const colorPaint = this.state.mode === 1
     ? <View style={{ position: 'absolute',top: -20, width: 155 }}>
         <FlatList
-          style={{backgroundColor: '#FAE3B9',}}
+          style={{backgroundColor: '#ffffff',}}
           data={this.props.strokeColors}
           extraData={this.state}
           //keyExtractor={() => Math.ceil(Math.random() * 10000000).toString()}
@@ -218,20 +218,6 @@ export default class RNSketchCanvas extends React.Component {
           horizontal
           showsHorizontalScrollIndicator={false}
         />
-        <View
-            style={{
-              width: 0,
-              height: 0,
-              borderLeftWidth: 10,
-              borderLeftColor: 'transparent',
-              borderRightWidth: 10,
-              borderRightColor: 'transparent',
-              borderTopWidth: 10,
-              borderTopColor: '#FAE3B9',
-              left: '15%'
-            }}
-          >
-          </View>
       </View>
     : null
 
@@ -315,3 +301,19 @@ RNSketchCanvas.CACHES = SketchCanvas.CACHES;
 export {
   SketchCanvas
 }
+
+
+// <View
+//             style={{
+//               width: 0,
+//               height: 0,
+//               borderLeftWidth: 10,
+//               borderLeftColor: 'transparent',
+//               borderRightWidth: 10,
+//               borderRightColor: 'transparent',
+//               borderTopWidth: 10,
+//               borderTopColor: '#FAE3B9',
+//               left: '15%'
+//             }}
+//           >
+//           </View>
