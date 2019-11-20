@@ -262,7 +262,7 @@ export default class RNSketchCanvas extends React.Component {
               </TouchableOpacity>)
             }
           </View>
-          <View style={{ flexDirection: 'row' }}>
+          <View style={{ flexDirection: 'row-reverse' }}>
             <ScrollView>
               {this.props.closeComponent && (
                 <TouchableOpacity onPress={() => { this.props.onClosePressed() }}>
