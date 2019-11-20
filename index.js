@@ -253,7 +253,7 @@ export default class RNSketchCanvas extends React.Component {
           permissionDialogTitle={this.props.permissionDialogTitle}
           permissionDialogMessage={this.props.permissionDialogMessage}
         />
-        <View style={{ flexDirection: 'row' }}>
+        <View style={{ flexDirection: 'row-reverse' }}>
           <View style={{ position: 'relative' }}>
             <View style={{position: 'absolute', top: -30}}>{colorPaint}</View>
             {this.props.penComponent && (
@@ -262,7 +262,7 @@ export default class RNSketchCanvas extends React.Component {
               </TouchableOpacity>)
             }
           </View>
-          <View style={{ flexDirection: 'row-reverse' }}>
+          <View style={{ flexDirection: 'row' }}>
             <ScrollView>
               {this.props.closeComponent && (
                 <TouchableOpacity onPress={() => { this.props.onClosePressed() }}>
