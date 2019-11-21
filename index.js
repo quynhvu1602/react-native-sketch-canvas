@@ -29,6 +29,7 @@ export default class RNSketchCanvas extends React.Component {
     closeComponent: PropTypes.node,
     eraseComponent: PropTypes.node,
     undoComponent: PropTypes.node,
+    fakeUndoComponent: PropTypes.node,
     penComponent: PropTypes.node,
     clearComponent: PropTypes.node,
     saveComponent: PropTypes.node,
@@ -81,6 +82,7 @@ export default class RNSketchCanvas extends React.Component {
     closeComponent: null,
     eraseComponent: null,
     undoComponent: null,
+    fakeUndoComponent:  null,
     penComponent: null,
     clearComponent: null,
     saveComponent: null,
@@ -252,6 +254,12 @@ export default class RNSketchCanvas extends React.Component {
               {this.props.undoComponent && (
                 <TouchableOpacity onPress={() => { this.props.onUndoPressed(this.undo()) }}>
                   {this.props.undoComponent}
+                </TouchableOpacity>)
+              }
+
+              {this.props.fakeUndoComponent && (
+                <TouchableOpacity>
+                  {this.props.fakeUndoComponent}
                 </TouchableOpacity>)
               }
 
