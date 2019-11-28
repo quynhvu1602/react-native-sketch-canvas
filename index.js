@@ -71,6 +71,7 @@ export default class RNSketchCanvas extends React.Component {
   static defaultProps = {
     containerStyle: null,
     canvasStyle: null,
+    flatListStyle: null,
     onStrokeStart: () => { },
     onStrokeChanged: () => { },
     onStrokeEnd: () => { },
@@ -216,7 +217,7 @@ export default class RNSketchCanvas extends React.Component {
     const colorPaint = this.state.mode === 1
     ? <View style={this.props.containColorStyle}>
         <FlatList
-          style={[{backgroundColor: this.props.backgroundContainColorStyle, borderRadius: 5,}], this.props.flatListStyle}
+          style={this.props.flatListStyle}
           data={this.props.strokeColors}
           extraData={this.state}
           //keyExtractor={() => Math.ceil(Math.random() * 10000000).toString()}
