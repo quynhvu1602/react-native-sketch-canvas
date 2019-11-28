@@ -64,7 +64,8 @@ export default class RNSketchCanvas extends React.Component {
     localSourceImage: PropTypes.shape({ filename: PropTypes.string, directory: PropTypes.string, mode: PropTypes.string }),
 
     permissionDialogTitle: PropTypes.string,
-    permissionDialogMessage: PropTypes.string
+    permissionDialogMessage: PropTypes.string,
+    backgroundContainColorStyle: PropTypes.string
   };
 
   static defaultProps = {
@@ -215,7 +216,7 @@ export default class RNSketchCanvas extends React.Component {
     const colorPaint = this.state.mode === 1
     ? <View style={this.props.containColorStyle}>
         <FlatList
-          style={this.props.flatListStyle}
+          style={[{backgroundColor: this.props.backgroundContainColorStyle, borderRadius: 5,}], this.props.flatListStyle}
           data={this.props.strokeColors}
           extraData={this.state}
           //keyExtractor={() => Math.ceil(Math.random() * 10000000).toString()}
