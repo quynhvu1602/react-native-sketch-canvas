@@ -17,6 +17,7 @@ export default class RNSketchCanvas extends React.Component {
     canvasStyle: ViewPropTypes.style,
     containColorStyle: ViewPropTypes.style,
     triangularStyle: ViewPropTypes.style,
+    flatListStyle: ViewPropTypes.style,
     onStrokeStart: PropTypes.func,
     onStrokeChanged: PropTypes.func,
     onStrokeEnd: PropTypes.func,
@@ -63,8 +64,7 @@ export default class RNSketchCanvas extends React.Component {
     localSourceImage: PropTypes.shape({ filename: PropTypes.string, directory: PropTypes.string, mode: PropTypes.string }),
 
     permissionDialogTitle: PropTypes.string,
-    permissionDialogMessage: PropTypes.string,
-    backgroundContainColorStyle: PropTypes.string
+    permissionDialogMessage: PropTypes.string
   };
 
   static defaultProps = {
@@ -215,7 +215,7 @@ export default class RNSketchCanvas extends React.Component {
     const colorPaint = this.state.mode === 1
     ? <View style={this.props.containColorStyle}>
         <FlatList
-          style={{backgroundColor: this.props.backgroundContainColorStyle}}
+          style={this.props.flatListStyle}
           data={this.props.strokeColors}
           extraData={this.state}
           //keyExtractor={() => Math.ceil(Math.random() * 10000000).toString()}
