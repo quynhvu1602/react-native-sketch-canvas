@@ -199,6 +199,9 @@ AppRegistry.registerComponent('example', () => example);
 | :------------ |:---------------:| :---------------| 
 | containerStyle | `object` | Styles to be applied on container |
 | canvasStyle | `object` | Styles to be applied on canvas component |
+| containColorStyle | `object` | Style location of color container |
+| flatListStyle | `object` | style of color container|
+| triangularStyle | `object` | style arrow-down when click to choose color |
 | onStrokeStart | `function` | See [above](#properties) |
 | onStrokeChanged | `function` | See [above](#properties) |
 | onStrokeEnd | `function` | See [above](#properties) |
@@ -377,3 +380,32 @@ Check full example app in the [example](./example) folder
 ## Troubleshooting
 -------------
 Please refer  [here](https://github.com/terrylinla/react-native-sketch-canvas/wiki/Troubleshooting).
+
+### Example (containColorStyle, flatListStyle, triangularStyle )
+ <img src="./images/presentation.jpg"
+    alt="Presentation2"
+    style="height: 300; width: 400" />
+ ```
+ triangularStyle: {
+    borderLeftWidth: 10,
+    borderLeftColor: 'transparent',
+    borderRightWidth: 10,
+    borderRightColor: 'transparent',
+    borderTopWidth: 10,
+    borderTopColor: '#f9f9f9',
+    width: 0,
+    height: 0,
+    left: '65%'
+  },
+  containColorStyle: {
+    position: 'absolute',
+    top: -20,
+    minWidth: 155,
+    right: -40,
+    marginRight: -25
+  },
+  flatListStyle: {
+    backgroundColor: 'white',
+    borderRadius: 5
+  }
+ ```
